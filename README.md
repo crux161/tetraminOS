@@ -1,14 +1,14 @@
-# TETRIS-OS: An operating system that only plays Tetris.
+# TetraminOS: An operating system, but is mostly a space to play with tetraminos... Mostly...
 
 ![screenshot](images/0.png)
 
 #### Features:
-- It's Tetris.
-- 32-bit (x86)
+- It's basically a tetris clone... 
+- 32-bit (x86) (working on that...)
 - Fully custom bootloader
-- Soundblaster 16 driver
-- Custom music track runner
-- Fully hardcoded tetris theme
+- ~~Soundblaster 16 driver~~ NO AUDIO (currently anyways...)
+- ~~Custom music track runner~~ AGAIN.. ((SMH)) NO AUDIO!!!
+- Fully hardcoded tetris theme (whatever TF that means...)
 - Double-buffered 60 FPS graphics at 320x200 pixels with custom 8-bit RGB palette
 
 #### Running
@@ -17,14 +17,16 @@
 ##### Mac OS
 ```
 $ make iso
-$ qemu-system-i386 -drive format=raw,file=boot.iso -d cpu_reset -monitor stdio -device sb16 -audiodev coreaudio,id=coreaudio,out.frequency=48000,out.channels=2,out.format=s32
+$ qemu-system-i386 -drive format=raw,file=boot.iso -d cpu_reset -monitor stdio 
 ```
 
-##### Unix-like
-Use the same command as Mac OS, but try with `pulseaudio` as the audio device.
-
+##### LINUX (&WSL) / UNIX / ??? MinGW ??? 
+```
+$ make iso 
+$ qemu-system-i386 -drive format=raw,file=boot.iso -d cpu_reset -monitor stdio
+```
 ##### Windows
-Absolutely no idea.
+Working on this one, but as of right now -- there is no build system that wouldn't require the use of something like MinGW
 
 ##### Real hardware
-You probably know what you're doing if you're going to try this. Just burn `boot.iso` onto some bootable media and give it a go. If things break, try disabling all of the music since you *probably* don't have something with a SB16 in it.
+Chances are writing this to a usb drive will cause it to boot, but all of that is just theory and has not been tested... YET.

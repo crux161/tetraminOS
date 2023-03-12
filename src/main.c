@@ -7,10 +7,7 @@
 #include "font.h"
 #include "system.h"
 #include "keyboard.h"
-#include "speaker.h"
 #include "fpu.h"
-#include "sound.h"
-#include "music.h"
 
 #define FPS 30
 #define LEVELS 30
@@ -694,14 +691,10 @@ void _main(u32 magic) {
     screen_init();
     timer_init();
     keyboard_init();
-    sound_init();
     generate_sprites();
-    music_init();
 
     state.menu = true;
 
-    state.music = true;
-    sound_master(255);
 
     bool last_music_toggle = false;
     u32 last_frame = 0, last = 0;
@@ -709,10 +702,6 @@ void _main(u32 magic) {
     while (true) {
         const u32 now = (u32) timer_get();
 
-        if (now != last) {
-            music_tick();
-            last = now;
-        }
 
         if ((now - last_frame) > (TIMER_TPS / FPS)) {
             last_frame = now;
@@ -723,17 +712,6 @@ void _main(u32 magic) {
             } else {
                 update();
                 render();
-            }
-
-            if (keyboard_char('m')) {
-                if (!last_music_toggle) {
-                    state.music = !state.music;
-                    sound_master(state.music ? 255 : 0);
-                }
-
-                last_music_toggle = true;
-            } else {
-                last_music_toggle = false;
             }
 
             screen_swap();

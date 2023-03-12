@@ -1,6 +1,6 @@
-CC=i386-elf-gcc
-ASM=i386-elf-as
-LD=i386-elf-ld
+CC=i686-linux-gnu-gcc
+ASM=i686-linux-gnu-as
+LD=i686-linux-gnu-ld
 
 GFLAGS=
 CCFLAGS=-m32 -std=c11 -O2 -g -Wall -Wextra -Wpedantic -Wstrict-aliasing
